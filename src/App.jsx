@@ -1,10 +1,9 @@
 import React from 'react'
-import Products from './pages/Products'
-
+import Sidebar from './pages/Slidebar/Sidebar'
 const App = () => {
   return (
     <>
-      <Products />
+      <Sidebar />
     </>
   )
 }

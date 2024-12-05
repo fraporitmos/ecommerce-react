@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import CardProduct from '../components/CardProduct'
+import CardProduct from '../../components/CardProduct'
 
-const Products = () => {
- 
-
+const HomeScreem = () => {
   const [data, setData] = useState([])
   const effectCalled = useRef(false)
 
@@ -29,16 +27,17 @@ const Products = () => {
 
 
   return (
-    <div className="flex mt-12 m-16 gap-6 flex-wrap justify-around ">
+    <div className="flex gap-6 flex-wrap justify-around ">
       {
         data.length > 0 
         ?
           data.map( item=> (
             <CardProduct
-            name={item.title} 
-            img={item.image}
+            name={item.name} 
+            images={item.images}
             description={item.description}
             price={item.price}
+            stock={item.stock}
             />
         ))
         : <h1>Cargando ...</h1>
@@ -48,4 +47,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default HomeScreem
