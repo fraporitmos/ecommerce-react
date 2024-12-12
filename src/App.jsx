@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import Sidebar from './pages/Slidebar/Sidebar'
+import { ProductsContext } from './context/ProductsContext'
+
+
 const App = () => {
+  const [productsCart, setProductsCart] = useState([])
+
   return (
     <>
-      <Sidebar />
+      <ProductsContext.Provider
+           value={{productsCart, setProductsCart}}>
+          <Sidebar />
+      </ProductsContext.Provider>
+   
     </>
   )
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardProduct = ({ name, images, description, price, stock, onClick }) => {
+const CardProduct = ({ name, images, description, price, stock, clickCard }) => {
   return (
     <div className="flex flex-col sm:flex-row max-w-md overflow-hidden bg-white rounded-lg shadow-lg">
       <div className="w-full sm:w-1/2  bg-cover bg-landscape">
@@ -24,7 +24,7 @@ const CardProduct = ({ name, images, description, price, stock, onClick }) => {
           </div>
 
           <button
-            onClick={onClick}
+            onClick={clickCard}
             className="px-3 py-2 mt-4 text-xs font-bold text-white uppercase bg-gray-800 rounded"
           >
             Agregar a carrito
