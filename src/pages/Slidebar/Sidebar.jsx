@@ -3,17 +3,26 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import { IoMenu } from "react-icons/io5";
 import { IoMdHome } from "react-icons/io";
+import { IoCart } from "react-icons/io5";
+import { BsInfoCircleFill } from "react-icons/bs";
 import { FaCartArrowDown } from "react-icons/fa";
 import HomeScreem from "../HomeScreen/HomeScreem";
-import CartScreen from "../CartScreen/CartScreen";
 import OrdersScreen from "../OrdersScreen/OrdersScreen";
-import { IoCart } from "react-icons/io5";
 import "./Slidebar.css";
 import { ProductsContext } from "../../context/ProductsContext";
+import InfoScreen from "../InfoScreen/InfoScreen";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const {productsCart} = useContext(ProductsContext)
+  const { productsCart } = useContext(ProductsContext);
+
+  const handleStateChange = (state) => {
+    setOpen(state.isOpen);
+  };
+
+  const closeMenu = () => {
+    setOpen(false);
+  };
 
   return (
     <Router>
@@ -22,51 +31,56 @@ const Sidebar = () => {
           <IoMenu color="white" size={40} onClick={() => setOpen(!open)} />
 
           <div className="flex flex-col items-center justify-center relative">
-          <Link className="menu-item" to="/cart">
-
-            <div className="relative">
-              <button
-                type="button"
-                class="w-5 h-5 text-sm  rounded-full text-white bg-red-500 absolute flex items-center justify-center bottom-4 right-0"
-              >
-                  <span class="p-1">{productsCart.length}</span>
-              </button>
-              <IoCart color="white" size={26} />
-            </div>
+            <Link className="menu-item" to="/orders" onClick={closeMenu}>
+              <div className="relative">
+                <button
+                  type="button"
+                  className="w-5 h-5 text-sm rounded-full text-white bg-red-500 absolute flex items-center justify-center bottom-4 right-0"
+                >
+                  <span className="p-1">{productsCart.length}</span>
+                </button>
+                <IoCart color="white" size={26} />
+              </div>
             </Link>
           </div>
         </div>
       </div>
 
-      <Menu isOpen={open}>
-        <Link className="menu-item" to="/home">
+      <Menu
+        isOpen={open}
+        onStateChange={handleStateChange}
+        overlayClassName={"custom-overlay"} // Evitar conflictos de superposición
+        customBurgerIcon={false} // Ocultar el ícono de hamburguesa predeterminado
+      >
+        <Link className="menu-item" to="/home" onClick={closeMenu}>
           <div className="flex items-center gap-2">
             <IoMdHome size={25} />
             <p className="text-xl">Home</p>
           </div>
         </Link>
 
-        <Link className="menu-item" to="/cart">
+        <Link className="menu-item" to="/orders" onClick={closeMenu}>
           <div className="flex items-center gap-2">
             <FaCartArrowDown size={25} />
             <p className="text-xl">Cart</p>
           </div>
         </Link>
 
-        <Link className="menu-item" to="/orders">
+        <Link className="menu-item" to="/info" onClick={closeMenu}>
           <div className="flex items-center gap-2">
-            <IoMdHome size={25} />
-            <p className="text-xl">Ordes</p>
+            <BsInfoCircleFill size={25} />
+            <p className="text-xl">Buy Info</p>
           </div>
         </Link>
       </Menu>
 
-      <div className="pt-28 containerPage bg-white ">
+      <div className="pt-28 containerPage bg-white">
         <Routes>
-          <Route path="/" element={<HomeScreem />}></Route>
-          <Route path="/home" element={<HomeScreem />}></Route>
-          <Route path="/cart" element={<CartScreen />}></Route>
-          <Route path="/orders" element={<OrdersScreen />}></Route>
+          <Route path="/" element={<HomeScreem />} />
+          <Route path="/home" element={<HomeScreem />} />
+          <Route path="/orders" element={<OrdersScreen />} />
+          <Route path="/info" element={<InfoScreen />} />
+
         </Routes>
       </div>
     </Router>

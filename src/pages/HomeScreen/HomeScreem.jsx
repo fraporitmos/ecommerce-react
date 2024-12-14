@@ -41,12 +41,14 @@ const HomeScreem = () => {
         ?
           data.map( item=> (
             <CardProduct
-            key={item.id}
+            key={item._id}
+            _id={item._id}
             name={item.name} 
             images={item.images}
             description={item.description}
             price={item.price}
             stock={item.stock}
+            category={item.category}
             clickCard={() => clickItem(item)}
             />
         ))

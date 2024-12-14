@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardProduct = ({ name, images, description, price, stock, clickCard }) => {
+const CardProduct = ({_id, name, images, category,description, price, stock, clickCard }) => {
   return (
     <div className="flex flex-col sm:flex-row max-w-md overflow-hidden bg-white rounded-lg shadow-lg">
       <div className="w-full sm:w-1/2  bg-cover bg-landscape">

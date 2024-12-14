@@ -7,11 +7,7 @@
   cursor: pointer;
 }
 
-.containerPage {
-  position: relative;
-  width: 100%;
-  z-index: 1000;
-}
+
 .menu-item {
   margin-top: 1em;
 }
