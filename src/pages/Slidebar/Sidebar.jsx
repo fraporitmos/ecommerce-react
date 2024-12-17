@@ -10,7 +10,8 @@ import HomeScreem from "../HomeScreen/HomeScreem";
 import OrdersScreen from "../OrdersScreen/OrdersScreen";
 import "./Slidebar.css";
 import { ProductsContext } from "../../context/ProductsContext";
-import InfoScreen from "../InfoScreen/InfoScreen";
+import StatusScreen from "../StatusScreen/StatusScreen";
+import SuccessScreen from "../SuccessScreen/SuccessScreen";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -79,7 +80,8 @@ const Sidebar = () => {
           <Route path="/" element={<HomeScreem />} />
           <Route path="/home" element={<HomeScreem />} />
           <Route path="/orders" element={<OrdersScreen />} />
-          <Route path="/info" element={<InfoScreen />} />
+          <Route path="/success" element={<SuccessScreen />} />
+          <Route path="/status" element={<StatusScreen />} />
 
         </Routes>
       </div>
