@@ -1,15 +1,16 @@
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { ProductsBuyContext } from "../context/ProductsContext";
+import { ProductsBuyContext, ProductsContext } from "../context/ProductsContext";
 import {useNavigate} from 'react-router-dom'
 import { useContext } from "react";
 
 export const PaypalWrapper = ({ showSpinner }) => {
 
     const [{ isPending }] = usePayPalScriptReducer();
-    const {productsBuyCart} = useContext(ProductsBuyContext)
+    const {productsBuyCart, setProductsBuyCart} = useContext(ProductsBuyContext)
+    const { setProductsCart} = useContext(ProductsContext)
 
     const navigate = useNavigate()
-    const style = {"layout":"horizontal"};
+    const style = {"layout":"horizontal" };
 
     const registerOrder = async () => {
 
@@ -28,6 +29,8 @@ export const PaypalWrapper = ({ showSpinner }) => {
           })
 
           if(response.ok){
+            setProductsBuyCart([])
+            setProductsCart([])
             const data = await response.json()
             navigate("/success")
           }
@@ -54,11 +57,6 @@ export const PaypalWrapper = ({ showSpinner }) => {
         })
             .then((response) => response.json())
             .then((order) => {
-                //TODO : Limpiar contexts
-                //TODO: Mostrar animacion cuando el carrito esta vacio
-                //TODO: No permitir que se agregen productos repetidos
-                //TODO:
-                console.log(order)
                 return order.id;
             });
     }
@@ -91,6 +89,7 @@ export const PaypalWrapper = ({ showSpinner }) => {
                 fundingSource={undefined}
                 createOrder={createOrder}
                 onApprove={onApprove}
+                className="w-64 h-14 mt-4"
             />
         </>
     );

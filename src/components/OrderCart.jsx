@@ -3,8 +3,8 @@ import {
   ProductsBuyContext,
   ProductsContext,
 } from "../context/ProductsContext";
+import { showErrorMessage } from "../utils/Alert";
 
-import Swal from 'sweetalert2'
 
 const OrderCart = ({
   _id,
@@ -22,14 +22,7 @@ const OrderCart = ({
   const { productsBuyCart, setProductsBuyCart } = useContext(ProductsBuyContext);
   const effectCalled = useRef(false);
 
-  function showMessage (msg){
-    Swal.fire({
-      title: 'Error!',
-      text: msg,
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    })
-  }
+
 
   useEffect(() => {
     if (effectCalled.current) return;
@@ -60,7 +53,11 @@ const OrderCart = ({
       );
       setProductsBuyCart(updateProducts);
     }else{
-      showMessage(`Solo hay  ${stock} unidades de ${name} disponibles de este producto.`)
+      showErrorMessage(
+        "Error",
+        `Solo hay  ${stock} unidades de ${name} disponibles de este producto.`,
+        "error"
+      )
     }
   }
 

@@ -67,7 +67,7 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <Link className="menu-item" to="/info" onClick={closeMenu}>
+        <Link className="menu-item" to="/status" onClick={closeMenu}>
           <div className="flex items-center gap-2">
             <BsInfoCircleFill size={25} />
             <p className="text-xl">Buy Info</p>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import CardProduct from '../../components/CardProduct'
 import { ProductsContext } from '../../context/ProductsContext'
+import { showErrorMessage } from '../../utils/Alert'
 
 const HomeScreem = () => {
   const [data, setData] = useState([])
@@ -30,7 +31,16 @@ const HomeScreem = () => {
   },[])
 
   function clickItem(product){
-    setProductsCart([...productsCart,product ])
+    const existProduct = productsCart.some( item=> item._id === product._id)
+    if(!existProduct){
+      setProductsCart([...productsCart, product ])
+    }else{
+        showErrorMessage(
+            "Ups, producto agregado ",
+            `Revisa tu carrito de compras, parece que el producta ya esta ahí.`,
+            "info"
+          )
+    }
   }
 
 
