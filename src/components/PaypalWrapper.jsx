@@ -22,7 +22,7 @@ export const PaypalWrapper = ({ showSpinner }) => {
             }))
          }
 
-          const response = await fetch("http://localhost:4043/api/cart",{
+          const response = await fetch("http://18.217.17.52:4043/api/cart",{
             method:'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(objeto)
