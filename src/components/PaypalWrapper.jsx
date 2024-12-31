@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import { useContext } from "react";
 
 export const PaypalWrapper = ({ showSpinner }) => {
-
+    //.env
     const [{ isPending }] = usePayPalScriptReducer();
     const {productsBuyCart, setProductsBuyCart} = useContext(ProductsBuyContext)
     const { setProductsCart} = useContext(ProductsContext)
@@ -22,7 +22,7 @@ export const PaypalWrapper = ({ showSpinner }) => {
             }))
          }
 
-          const response = await fetch("http://18.217.17.52:4043/api/cart",{
+          const response = await fetch("http://18.189.52.252:4043/api/cart",{
             method:'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(objeto)

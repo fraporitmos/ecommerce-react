@@ -15,7 +15,7 @@ const HomeScreem = () => {
 
      const fetchData = async () => {
         try {
-          const response = await fetch("http://18.217.17.52:4043/api/product")
+          const response = await fetch("http://18.189.52.252:4043/api/product")
           if(response.ok){
             const data = await response.json()
             setData(data.products)
